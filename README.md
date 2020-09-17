@@ -1,4 +1,4 @@
-# TextAlive App API "char-cube" example
+# TextAlive App API "char cube" example
 
 TextAlive App API のサンプルコードで、 [three.js](https://threejs.org/) を使った作例です。
 
