@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Player } from "textalive-app-api";
+import { Player, stringToDataUrl } from "textalive-app-api";
 
 /**
  * 
@@ -57,7 +57,46 @@ class Main
         if (! app.songUrl)
         {
             this._player.createFromSongUrl("https://www.youtube.com/watch?v=-6oxY-quTOA", {
-                altLyricsUrl: "data:text/plain;base64,44G744KT44Go44Gu44Kz44OI44CA44G744KT44Go44Gu44Kt44Oi44OB44Gg44GR44CA5Lyd44GI44KJ44KM44Gf44KJ44GE44GE44Gu44Gr44Gt44CA44Gq44KT44GmCuOBqOOBjeOBqeOBjeOAgOiAg+OBiOOBn+OCiuOBmeOCi+OBkeOBqeOAgOOBneOBhuOBneOBhuOAgOOBhuOBvuOBj+OBr+OBhOOBi+OBquOBhOOBv+OBn+OBhOOBrQoK44Gf44Go44GI44Gw44CA44Gd44GG44CA5oSb5oOz44KI44GP56yR44GG44GC44Gu5a2Q44Gu55yf5Ly844Go44GL44GX44Gf44KK44KC44GZ44KL44GR44GpCuOBn+OBhOOBpuOBhOOAgOOBhuOCj+OBueOBoOOBkeOBp+OAgOOBqeOBhuOBq+OCguOAgOOBk+OBhuOBq+OCguOAgOOBquOCk+OBqOOCguOAgOOBquOCieOBquOBhOOCguOBruOBpwoK44Gd44KM44Gn44KC44CA44G744KJ44CA44Kt44Of44GM56yR44Gj44Gm44KL44CA44G+44KP44KK44Gv44GE44Gk44KC5Yil5LiW55WM44GnCuOBteOBqOOBl+OBn+OBqOOBjeOAgOebruOBqOebruOBjOOBguOBo+OBn+OCieOAgOOCveODr+OCveODr+OBl+OBoeOCg+OBhuOAgOOCreODn+OBruOBm+OBhOOBoOOBi+OCiQoK5oGL44Gu44Ot44Oz44Oq55qE44Gr44CA6KqH5aSn5aaE5oOz44CA6ZuG5Lit56Cy54Gr44GnCuOCreODn+OBruOCs+ODiOODkOOBruOBsuOBqOOBpOOBsuOBqOOBpOOBq+OAgOaSg+OBoeaKnOOBi+OCjOOBn+ODj+ODvOODiOOBrwrjgZ/jgYjjgZrjgIDkuI3lronlrprjgafjgIDjgajjgY3jganjgY3jgIDou6LjgbPjgZ3jgYbjgavjgoLjgarjgovjgZHjgakK44Gd44Gj44Go44CA5pSv44GI44Gm44GP44KM44KL44CA44Gd44GG44GE44GG44Go44GT44KN44GM5aW944GN44Gq44Gu44GVCgoK44GE44Gk44KC44Gu44Kz44OI44CA44GC44KK44G144KM44Gf44Kz44OI44OQ44GV44GI44CA5Ye644Gm44GT44Gq44GP44Gm44CA44Oi44Ok44Oi44Ok44GX44Gf44KK44GtCuOBquOCk+OBpuOBreOAgOaCqeOCk+OBoOOCiuOCguOBmeOCi+OBkeOBqeOAgOOBneOBhuOBneOBhuOAgOetlOOBiOOBr+OBv+OBpOOBi+OCieOBquOBhOOBruOBrQoK44Gf44Go44GI44Gw44CA44Gd44GG44CA5puy44GM44KK6KeS5puy44GM44Gj44Gm44CA5YG254S244Kt44Of44Go5Ye65Lya44Gj44Gf44Go44GN44Gr44GvCuOCouOCv+ODleOCv+OBl+OBpuOBsOOBi+OCiuOBp+OAgOOBqeOBhuOBq+OCguOAgOOBk+OBhuOBq+OCguOAgOOBquOCk+OBqOOCguOAgOOBquOCieOBquOBhOOCguOBruOBpwoK44Gd44KM44Gn44KC44CA44G744KJ44CA44Kt44Of44GM6KaL44Gk44KB44Gm44KL44CA44G+44KP44KK44Gv44GE44Gk44KC5Yil5qyh5YWD44GnCuOBquOBq+OCguOBi+OCguOBjOOAgOOBoeOBo+OBveOBkeOBq+imi+OBiOOCi+OAgOacuuOBruS4iuOBq+etlOOBiOOBr+eEoeOBhOOBi+OCiQoK5oGL44Gu44Kr44Ks44Kv55qE44Gr44CA6I2S5ZSQ54Sh56i944CA57W156m65LqL44Gn44KCCuOCreODn+OBruWCjeOBq+OBhOOBn+OBhOOBruOAgOOCs+ODiOODkOOBquOCk+OBpuOBhOOCieOBquOBhOOBj+OCieOBhOOBqwrjgZ/jgYjjgZrjgIDpmqPjgavjgYTjgabjgIDmjIHjgaHjgaTmjIHjgZ/jgozjgaTjgIDjgoLjgZ/jgozjgYvjgYvjgorjgaTjgacK44Gd44Gj44Go44CA5omL44Go5omL5Y+W44KK5ZCI44GG44CA44Gd44GG44GE44GG5LqM5Lq644Gr44Gq44KK44Gf44GE44Gu44GVCgoK5oGL44Gu44Ot44Oz44Oq55qE44Gr44CA55+b55u+44Gg44KJ44GR44Gu44CA5aSi54mp6Kqe44GnCuOCreODn+OBruWPs+aJi+W3puaJi+OAgOOBpOOBi+OBvuOBiOOBpumbouOBleOBquOBhOOBj+OCieOBhOOBrwrjgZ/jgYjjgZrjgIDnqbrlm57jgorjgafjgIDjgajjgY3jganjgY3jgIDou6LjgbPjgZ3jgYbjgavjgoLjgarjgovjgZHjgakK44Gd44Gj44Go44CA5oqx44GI44Gm44GP44KM44KL44CA44Gd44GG44GE44GG44Go44GT44KN44GM5aW944GN44Gq44Gu44GV"
+                // 歌詞タイミングをバージョン固定
+                video: {
+                    lyricId: 49058,
+                    lyricDiffId: 2559
+                },
+                // 歌詞テキストを固定
+                altLyricsUrl: stringToDataUrl(`
+                    ほんとのコト　ほんとのキモチだけ　伝えられたらいいのにね　なんて
+                    ときどき　考えたりするけど　そうそう　うまくはいかないみたいね
+                    
+                    たとえば　そう　愛想よく笑うあの子の真似とかしたりもするけど
+                    たいてい　うわべだけで　どうにも　こうにも　なんとも　ならないもので
+                    
+                    それでも　ほら　キミが笑ってる　まわりはいつも別世界で
+                    ふとしたとき　目と目があったら　ソワソワしちゃう　キミのせいだから
+                    
+                    恋のロンリ的に　誇大妄想　集中砲火で
+                    キミのコトバのひとつひとつに　撃ち抜かれたハートは
+                    たえず　不安定で　ときどき　転びそうにもなるけど
+                    そっと　支えてくれる　そういうところが好きなのさ
+                    
+                    いつものコト　ありふれたコトバさえ　出てこなくて　モヤモヤしたりね
+                    なんてね　悩んだりもするけど　そうそう　答えはみつからないのね
+                    
+                    たとえば　そう　曲がり角曲がって　偶然キミと出会ったときには
+                    アタフタしてばかりで　どうにも　こうにも　なんとも　ならないもので
+                    
+                    それでも　ほら　キミが見つめてる　まわりはいつも別次元で
+                    なにもかもが　ちっぽけに見える　机の上に答えは無いから
+                    
+                    恋のカガク的に　荒唐無稽　絵空事でも
+                    キミの傍にいたいの　コトバなんていらないくらいに
+                    たえず　隣にいて　持ちつ持たれつ　もたれかかりつで
+                    そっと　手と手取り合う　そういう二人になりたいのさ
+                    
+                    恋のロンリ的に　矛盾だらけの　夢物語で
+                    キミの右手左手　つかまえて離さないくらいは
+                    たえず　空回りで　ときどき　転びそうにもなるけど
+                    そっと　抱えてくれる　そういうところが好きなのさ
+                `)
             });
         }
 
