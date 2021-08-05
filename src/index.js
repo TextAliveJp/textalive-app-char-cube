@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Player, stringToDataUrl } from "textalive-app-api";
+import { Player } from "textalive-app-api";
 
 /**
  * 
@@ -23,8 +23,8 @@ class Main
     {
         var player = new Player({
             app: {
-                appAuthor: "daniwell",
-                appName: "Char Cube",
+                // トークンは https://developer.textalive.jp/profile で取得したものを使う
+                token: "test",
                 parameters: [
                     {
                         title: "テキスト色",
@@ -56,47 +56,16 @@ class Main
     {
         if (! app.songUrl)
         {
-            this._player.createFromSongUrl("https://www.youtube.com/watch?v=-6oxY-quTOA", {
-                // 歌詞タイミングをバージョン固定
+            // 真島ゆろ / 嘘も本当も君だから
+            this._player.createFromSongUrl("https://piapro.jp/t/YW_d/20210206123357", {
                 video: {
-                    lyricId: 49058,
-                    lyricDiffId: 2559
+                    // 音楽地図訂正履歴: https://songle.jp/songs/2121405/history
+                    beatId: 3953908,
+                    repetitiveSegmentId: 2099661,
+                    // 歌詞タイミング訂正履歴: https://textalive.jp/lyrics/piapro.jp%2Ft%2FYW_d%2F20210206123357
+                    lyricId: 52061,
+                    lyricDiffId: 5123,
                 },
-                // 歌詞テキストを固定
-                altLyricsUrl: stringToDataUrl(`
-                    ほんとのコト　ほんとのキモチだけ　伝えられたらいいのにね　なんて
-                    ときどき　考えたりするけど　そうそう　うまくはいかないみたいね
-                    
-                    たとえば　そう　愛想よく笑うあの子の真似とかしたりもするけど
-                    たいてい　うわべだけで　どうにも　こうにも　なんとも　ならないもので
-                    
-                    それでも　ほら　キミが笑ってる　まわりはいつも別世界で
-                    ふとしたとき　目と目があったら　ソワソワしちゃう　キミのせいだから
-                    
-                    恋のロンリ的に　誇大妄想　集中砲火で
-                    キミのコトバのひとつひとつに　撃ち抜かれたハートは
-                    たえず　不安定で　ときどき　転びそうにもなるけど
-                    そっと　支えてくれる　そういうところが好きなのさ
-                    
-                    いつものコト　ありふれたコトバさえ　出てこなくて　モヤモヤしたりね
-                    なんてね　悩んだりもするけど　そうそう　答えはみつからないのね
-                    
-                    たとえば　そう　曲がり角曲がって　偶然キミと出会ったときには
-                    アタフタしてばかりで　どうにも　こうにも　なんとも　ならないもので
-                    
-                    それでも　ほら　キミが見つめてる　まわりはいつも別次元で
-                    なにもかもが　ちっぽけに見える　机の上に答えは無いから
-                    
-                    恋のカガク的に　荒唐無稽　絵空事でも
-                    キミの傍にいたいの　コトバなんていらないくらいに
-                    たえず　隣にいて　持ちつ持たれつ　もたれかかりつで
-                    そっと　手と手取り合う　そういう二人になりたいのさ
-                    
-                    恋のロンリ的に　矛盾だらけの　夢物語で
-                    キミの右手左手　つかまえて離さないくらいは
-                    たえず　空回りで　ときどき　転びそうにもなるけど
-                    そっと　抱えてくれる　そういうところが好きなのさ
-                `)
             });
         }
 
