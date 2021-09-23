@@ -24,7 +24,7 @@ class Main
         var player = new Player({
             app: {
                 // トークンは https://developer.textalive.jp/profile で取得したものを使う
-                token: "test",
+                token: "rR1JoTmnx0KeK0Wn",
                 parameters: [
                     {
                         title: "テキスト色",
