@@ -3,11 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "description": "three.js を使った TextAlive App APIの作例",
-  "main": "index.js",
   "scripts": {
-    "build-dev": "parcel src/index.html --out-dir dev",
-    "build": "parcel build src/index.html --public-url ./ --out-dir docs --no-source-maps",
-    "clean": "del-cli .cache dev docs"
+    "build-dev": "parcel src/index.html --dist-dir dev",
+    "build": "parcel build src/index.html --public-url ./ --dist-dir docs --no-source-maps",
+    "clean": "del-cli .parcel-cache dev docs",
+    "prebuild": "del-cli docs"
   },
   "repository": {
     "type": "git",
@@ -20,12 +20,11 @@
   "license": "MIT",
   "homepage": "https://github.com/TextAliveJp/textalive-app-char-cube#readme",
   "dependencies": {
-    "textalive-app-api": "^0.2.0",
+    "textalive-app-api": "^0.3.0",
     "three": "^0.117.1"
   },
   "devDependencies": {
-    "del-cli": "^3.0.1",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-clean-dist": "0.0.6"
+    "del-cli": "^4.0.1",
+    "parcel": "^2.0.0-beta.3.1"
   }
 }
