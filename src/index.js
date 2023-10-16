@@ -177,7 +177,7 @@ class ThreeManager
         this._ctx = this._can.getContext("2d");
         var tex = this._tex = new THREE.Texture(this._can);
         var mat = this._mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, alphaTest: 0.4, side: THREE.DoubleSide });
-        var box = this._box = new THREE.Mesh(new THREE.BoxBufferGeometry(10, 10, 10), mat);
+        var box = this._box = new THREE.Mesh(new THREE.BoxGeometry(10, 10, 10), mat);
         scene.add(box);     
         
         this._drawFrame();
