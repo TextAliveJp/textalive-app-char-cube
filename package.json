@@ -1,7 +1,7 @@
 {
   "name": "textalive-app-char-cube",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "three.js を使った TextAlive App APIの作例",
   "scripts": {
     "build-dev": "parcel src/index.html --dist-dir dev",
