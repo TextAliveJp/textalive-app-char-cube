@@ -20,12 +20,12 @@
   "license": "MIT",
   "homepage": "https://github.com/TextAliveJp/textalive-app-char-cube#readme",
   "dependencies": {
-    "textalive-app-api": "^0.3.2",
+    "textalive-app-api": "^0.4.0",
     "three": "^0.157.0"
   },
   "devDependencies": {
-    "del-cli": "^5.1.0",
-    "parcel": "^2.10.0",
-    "process": "^0.11.10"
+    "buffer": "^6.0.3",
+    "del-cli": "^6.0.0",
+    "parcel": "^2.14.4"
   }
 }

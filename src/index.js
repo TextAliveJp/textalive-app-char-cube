@@ -56,16 +56,19 @@ class Main
     {
         if (! app.songUrl)
         {
-            // 真島ゆろ / 嘘も本当も君だから
-            this._player.createFromSongUrl("https://piapro.jp/t/YW_d/20210206123357", {
-                video: {
-                    // 音楽地図訂正履歴: https://songle.jp/songs/2121405/history
-                    beatId: 3953908,
-                    repetitiveSegmentId: 2099661,
-                    // 歌詞タイミング訂正履歴: https://textalive.jp/lyrics/piapro.jp%2Ft%2FYW_d%2F20210206123357
-                    lyricId: 52061,
-                    lyricDiffId: 5123,
-                },
+            // ハロー、フェルミ。 / ど～ぱみん
+            this._player.createFromSongUrl("https://piapro.jp/t/oTaJ/20250204234235", {
+              video: {
+                // 音楽地図訂正履歴
+                beatId: 4694278,
+                chordId: 2830733,
+                repetitiveSegmentId: 2946481,
+            
+                // 歌詞URL: https://piapro.jp/t/lbO1
+                // 歌詞タイミング訂正履歴: https://textalive.jp/lyrics/piapro.jp%2Ft%2FoTaJ%2F20250204234235
+                lyricId: 67813,
+                lyricDiffId: 20657
+              },
             });
         }
 
